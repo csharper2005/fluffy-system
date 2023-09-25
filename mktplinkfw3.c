@@ -145,7 +145,7 @@ void get_md5_hash(const void *data, size_t count,
 	uint8_t buf[BUF_SIZE];
 	EVP_MD_CTX* md5_cntxt;
 
-	md5_cntxt = EVP_MD_CTX_create();
+	md5_cntxt = EVP_MD_CTX_new();
 	EVP_DigestInit_ex(md5_cntxt, EVP_md5(), NULL);
 	EVP_DigestUpdate(md5_cntxt, data, count);
 	fseek(file, 0L, SEEK_SET);
@@ -157,7 +157,7 @@ void get_md5_hash(const void *data, size_t count,
 			break;
 	}
 	EVP_DigestFinal_ex(md5_cntxt, md5, &md5_len);
-	EVP_MD_CTX_destroy(md5_cntxt);
+	EVP_MD_CTX_free(md5_cntxt);
 }
 
 void print_md5(const uint8_t *md5, uint8_t size)
