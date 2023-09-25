@@ -1,0 +1,2 @@
+cc mktplinkfw3.c -o mktplinkfw3 -Wall -O3 -Wpedantic -Wno-unused-result \
+	-Wno-pointer-sign -lcrypto -lssl
