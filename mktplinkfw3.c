@@ -202,7 +202,6 @@ void set_main_hdr(struct _hdr *hdr)
 	hdr->sw_revision	= 0x55aa0310;
 	hdr->platform_ver	= 0xa5000901;
 	hdr->special_ver	= 0x0;
-	hdr->file_size		= 0x1161200;
 	hdr->up_ptn_entry_num	= 0x1;
 	hdr->flash_ptn_entry_num = 0x6;
 	uint8_t sig[SIG_LEN] = {
@@ -325,7 +324,7 @@ int main(int argc, char *argv[])
 	size = get_file_size(ifile);
 	printf("Input file size: %d (0x%08x) bytes\n", size, size);
 
-	fw_hdr.total_image_len = size + sizeof(fw_hdr);
+	fw_hdr.file_size = size + sizeof(fw_hdr);
 	get_md5_hash(&fw_hdr, sizeof(fw_hdr), ifile, (uint8_t *)&md5_hash);
 	print_md5(md5_hash, MD5_DIGEST_LENGTH);
 	memcpy(&fw_hdr.file_md5, &md5_hash, sizeof(md5_hash));
